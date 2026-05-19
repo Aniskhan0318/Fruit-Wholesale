@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreshRoots Wholesale — Premium Fruit & Vegetables</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #1e4a2b;
+      --green-mid: #2d6a3f;
+      --green-light: #4a9660;
+      --green-pale: #e8f4ec;
+      --amber: #d4860a;
+      --amber-pale: #fdf3e0;
+      --cream: #faf8f4;
+      --white: #ffffff;
+      --text-dark: #1a1a18;
+      --text-mid: #3d4039;
+      --text-muted: #717468;
+      --border: #d8dbd3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--green-dark);
+      letter-spacing: 0.01em;
+    }
+    .nav-logo span { color: var(--amber); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+    nav ul a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--green-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 6rem 5vw 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: 60px;
+      bottom: -100px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 40px solid rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(212,134,10,0.2);
+      color: #f0b843;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.18;
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #f0b843;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.78);
+      max-width: 440px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--amber);
+      color: var(--white);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #b87209; transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.07); }
+
+    /* Hero right — stat cards */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 1.4rem 1.2rem;
+    }
+    .stat-card .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #f0b843;
+      display: block;
+    }
+    .stat-card .lbl {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.25rem;
+      font-weight: 300;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--amber-pale);
+      border-bottom: 1px solid #e8d5a8;
+      padding: 1.1rem 5vw;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .trust-bar p {
+      font-size: 0.85rem;
+      color: #7a5c10;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .trust-bar p::before {
+      content: '✓';
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    /* ── SECTION SHELL ── */
+    section { padding: 5rem 5vw; }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      color: var(--green-dark);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .section-intro {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+    .about-highlight {
+      background: var(--green-pale);
+      border-left: 3px solid var(--green-light);
+      padding: 1rem 1.25rem;
+      border-radius: 0 6px 6px 0;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--green-dark);
+      font-weight: 400;
+    }
+    .about-img-stack {
+      position: relative;
+    }
+    .img-placeholder {
+      width: 100%;
+      background: var(--green-pale);
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      gap: 0.5rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    .img-placeholder .icon { font-size: 2rem; }
+    .img-tall { height: 320px; }
+    .img-short { height: 160px; margin-top: 1rem; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 6px 24px rgba(30,74,43,0.1); transform: translateY(-2px); }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--green-dark);
+      margin-bottom: 0.6rem;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    /* ── PRODUCE ── */
+    .produce-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .produce-chip {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      font-weight: 400;
+    }
+    .produce-chip .emoji { font-size: 1.6rem; display: block; margin-bottom: 0.4rem; }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--green-dark); }
+    #gallery .section-label { color: #a8d4b2; }
+    #gallery .section-title { color: var(--white); }
+    #gallery .section-intro { color: rgba(255,255,255,0.65); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .gallery-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      gap: 0.5rem;
+      min-height: 180px;
+    }
+    .gallery-item .g-icon { font-size: 1.8rem; }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-note {
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Video placeholder */
+    .video-placeholder {
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      min-height: 220px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.9rem;
+    }
+    .play-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    /* ── HOW WE WORK ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+    .step {
+      padding: 1.5rem 1.5rem 1.5rem 0;
+      border-top: 2px solid var(--green-pale);
+      position: relative;
+    }
+    .step:first-child { border-top-color: var(--green-light); }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--green-pale);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--green-dark);
+      margin-bottom: 0.4rem;
+    }
+    .step p { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--green-dark);
+      margin-bottom: 1rem;
+    }
+    .contact-info p {
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .detail-icon {
+      font-size: 1.2rem;
+      margin-top: 0.1rem;
+    }
+    .detail-text strong { display: block; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .detail-text span { font-size: 0.95rem; color: var(--text-dark); }
+
+    .contact-form-area {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+    .contact-form-area h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 1.25rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      background: var(--white);
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--green-light); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%;
+      background: var(--green-dark);
+      color: white;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--green-mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.65);
+      padding: 2.5rem 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer .f-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: white;
+    }
+    footer .f-logo span { color: #f0b843; }
+    footer p { font-size: 0.82rem; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+    /* ── HAMBURGER MENU ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 200;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--green-dark);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      flex-direction: column;
+      padding: 1rem 5vw 1.5rem;
+      gap: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--green-dark); }
+
+    /* ── TABLET (max 1024px) ── */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 4rem 5vw 3.5rem;
+      }
+      .hero h1 { font-size: clamp(2rem, 3.5vw, 3rem); }
+      .hero-stats { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .stat-card { padding: 1rem; }
+      .stat-card .num { font-size: 1.6rem; }
+
+      #about { gap: 2.5rem; }
+      .contact-grid { gap: 2.5rem; }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-item.wide { grid-column: span 2; }
+
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 0; }
+      .step { padding: 1.25rem 1rem 1.25rem 0; }
+
+      section { padding: 4rem 5vw; }
+    }
+
+    /* ── MOBILE (max 640px) ── */
+    @media (max-width: 640px) {
+      /* Nav */
+      nav ul { display: none; }
+      .nav-hamburger { display: flex; }
+      nav { height: 60px; }
+      .mobile-menu { top: 60px; }
+
+      /* Hero */
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3rem 5vw 2.5rem;
+        gap: 2rem;
+      }
+      .hero h1 { font-size: 2rem; line-height: 1.2; }
+      .hero p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+      }
+      .stat-card { padding: 0.9rem 0.8rem; }
+      .stat-card .num { font-size: 1.4rem; }
+      .stat-card .lbl { font-size: 0.75rem; }
+      .hero-ctas { flex-direction: column; gap: 0.75rem; }
+      .btn-primary, .btn-outline { text-align: center; }
+
+      /* Trust bar */
+      .trust-bar {
+        gap: 0.75rem;
+        padding: 0.9rem 5vw;
+      }
+      .trust-bar p { font-size: 0.8rem; }
+
+      /* Sections */
+      section { padding: 3rem 5vw; }
+      .section-title { font-size: 1.6rem; }
+      .section-intro { margin-bottom: 2rem; }
+
+      /* About */
+      #about {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .img-tall { height: 220px; }
+      .img-short { height: 130px; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .service-card { padding: 1.25rem 1.1rem; }
+
+      /* Produce */
+      .produce-grid { grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
+      .produce-chip { padding: 0.75rem 0.5rem; font-size: 0.82rem; }
+      .produce-chip .emoji { font-size: 1.3rem; }
+
+      /* Gallery */
+      .gallery-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .gallery-item.wide { grid-column: span 1; }
+      .gallery-item { min-height: 140px; }
+
+      /* Steps */
+      .steps { grid-template-columns: 1fr; }
+      .step {
+        padding: 1.25rem 0 1.25rem 0;
+        border-top: 2px solid var(--green-pale);
+        border-left: none;
+      }
+      .step:first-child { border-top-color: var(--green-light); }
+
+      /* Contact */
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-form-area { padding: 1.25rem; }
+
+      /* Footer */
+      footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+        padding: 2rem 5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Fresh<span>Roots</span> Wholesale</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile slide-down menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#gallery" onclick="closeMenu()">Gallery</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Wholesale Fruit &amp; Vegetables</span>
+      <h1>Farm-Fresh Produce,<br><em>Delivered With Care</em></h1>
+      <p>Supplying restaurants, retailers, and markets with the finest fresh fruit and vegetables — sourced responsibly, delivered reliably.</p>
+      <div class="hero-ctas">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="num">10+</span>
+        <span class="lbl">Years in the trade</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">50+</span>
+        <span class="lbl">Produce varieties</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">5×</span>
+        <span class="lbl">Weekly deliveries</span>
+      </div>
+      <div class="stat-card">
+        <span class="num">100%</span>
+        <span class="lbl">Quality guaranteed</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <p>Consistent, reliable supply</p>
+    <p>Competitive wholesale pricing</p>
+    <p>Direct sourcing from growers</p>
+    <p>Flexible order quantities</p>
+    <p>All produce freshness-checked</p>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">Passion for Fresh Produce, Built on Trust</h2>
+      <p>
+        [Your Name] is an independent wholesale trader with over a decade of hands-on experience sourcing and supplying fresh fruit and vegetables. Working directly with growers and established suppliers, the business delivers quality produce to a wide range of customers — from local market stalls to restaurants and independent retailers.
+      </p>
+      <p>
+        Every order is personally handled with attention to freshness, fair pricing, and reliable delivery. This is a business built on relationships — with growers who share a commitment to quality, and with customers who rely on consistency.
+      </p>
+      <p>
+        The sourcing operation runs [X] days a week, starting at the early market hours to select only the best available stock. Customers receive produce that is inspected and packed the same day it is ordered.
+      </p>
+      <div class="about-highlight">
+        📍 Operating from [Your City/Region] — supplying customers across the surrounding area since [Year].
+      </div>
+    </div>
+    <div class="about-img-stack">
+      <div class="img-placeholder img-tall">
+        <span class="icon">🖼️</span>
+        <strong>Your photo here</strong>
+        <span>Replace with a professional photo<br>of yourself at work</span>
+      </div>
+      <div class="img-placeholder img-short">
+        <span class="icon">📸</span>
+        <strong>Sourcing location</strong>
+        <span>Photo of your market or supplier</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Wholesale Services</h2>
+    <p class="section-intro">We supply a broad range of fresh produce, with a flexible approach to meet the specific needs of each customer.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🥦</div>
+        <h3>Wholesale Supply</h3>
+        <p>Bulk orders of seasonal and year-round fresh fruit and vegetables at competitive wholesale prices, available for regular weekly supply.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚚</div>
+        <h3>Local Delivery</h3>
+        <p>Reliable delivery to your premises, [X] days per week. Orders confirmed the evening before for next-morning arrival.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <h3>Flexible Ordering</h3>
+        <p>No rigid minimum order sizes. Whether you need a single crate or a full van load, we accommodate orders large and small.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌱</div>
+        <h3>Seasonal Specials</h3>
+        <p>Access to seasonal, locally-grown varieties when available — often at better prices and superior freshness to imported alternatives.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Trade Accounts</h3>
+        <p>Regular customers can set up a trade account with agreed pricing, consolidated weekly invoicing, and priority order slots.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Custom Orders</h3>
+        <p>Need something specific? Get in touch with your requirements and we will do our best to source it at the best available price.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCE -->
+  <section style="background: var(--green-pale); padding: 3.5rem 5vw;">
+    <div class="section-label">Stock</div>
+    <h2 class="section-title">What We Stock</h2>
+    <p class="section-intro">A regular selection of the most popular fresh produce, refreshed with seasonal availability throughout the year.</p>
+    <div class="produce-grid">
+      <div class="produce-chip"><span class="emoji">🍎</span>Apples</div>
+      <div class="produce-chip"><span class="emoji">🍊</span>Oranges &amp; Citrus</div>
+      <div class="produce-chip"><span class="emoji">🍌</span>Bananas</div>
+      <div class="produce-chip"><span class="emoji">🍇</span>Grapes</div>
+      <div class="produce-chip"><span class="emoji">🍓</span>Berries</div>
+      <div class="produce-chip"><span class="emoji">🥭</span>Mangoes</div>
+      <div class="produce-chip"><span class="emoji">🥑</span>Avocados</div>
+      <div class="produce-chip"><span class="emoji">🍅</span>Tomatoes</div>
+      <div class="produce-chip"><span class="emoji">🥕</span>Carrots</div>
+      <div class="produce-chip"><span class="emoji">🥔</span>Potatoes</div>
+      <div class="produce-chip"><span class="emoji">🧅</span>Onions</div>
+      <div class="produce-chip"><span class="emoji">🥦</span>Broccoli</div>
+      <div class="produce-chip"><span class="emoji">🫑</span>Peppers</div>
+      <div class="produce-chip"><span class="emoji">🌽</span>Sweetcorn</div>
+      <div class="produce-chip"><span class="emoji">🥬</span>Leafy Greens</div>
+      <div class="produce-chip"><span class="emoji">🧄</span>Garlic &amp; Herbs</div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-label">Gallery</div>
+    <h2 class="section-title">The Business in Action</h2>
+    <p class="section-intro">Photos and videos from our daily operations — from the sourcing floor to final delivery.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <div class="g-icon">🎬</div>
+        <strong style="color:rgba(255,255,255,0.8)">Video — Day at the market</strong>
+        <span>Replace with your video embed or &lt;video&gt; tag</span>
+        <div class="play-btn">▶</div>
+      </div>
+      <div class="gallery-item">
+        <div class="g-icon">🖼️</div>
+        <span>Photo — Sourcing location</span>
+      </div>
+      <div class="gallery-item">
+        <div class="g-icon">🖼️</div>
+        <span>Photo — Fresh stock display</span>
+      </div>
+      <div class="gallery-item">
+        <div class="g-icon">🖼️</div>
+        <span>Photo — Packing &amp; loading</span>
+      </div>
+      <div class="gallery-item wide">
+        <div class="g-icon">🖼️</div>
+        <span>Photo — Market stall / supplier premises</span>
+      </div>
+      <div class="gallery-item">
+        <div class="g-icon">🎬</div>
+        <span>Video — Stock selection process</span>
+        <div class="play-btn">▶</div>
+      </div>
+    </div>
+    <p class="gallery-note">Replace placeholder boxes above with your actual &lt;img&gt; and &lt;video&gt; tags</p>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section>
+    <div class="section-label">Process</div>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-intro">A straightforward process designed around your schedule and requirements.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Enquire or Order</h3>
+        <p>Get in touch by phone, WhatsApp, or the contact form with your weekly requirements.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>We Source Fresh</h3>
+        <p>Your order is picked the same morning from the freshest available stock at the market.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Packed &amp; Checked</h3>
+        <p>All produce is inspected, weighed, and packed before leaving our hands.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Delivered to You</h3>
+        <p>Delivery is made directly to your premises at a time that suits you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-title">Place an Order or Enquire</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Contact Details</h3>
+        <p>Reach out directly by phone or message for the fastest response. Orders placed before [time] are fulfilled the following morning.</p>
+        <div class="contact-detail">
+          <span class="detail-icon">📞</span>
+          <div class="detail-text">
+            <strong>Phone / WhatsApp</strong>
+            <span>[Your Phone Number]</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-icon">📧</span>
+          <div class="detail-text">
+            <strong>Email</strong>
+            <span>[your@email.com]</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-icon">📍</span>
+          <div class="detail-text">
+            <strong>Operating Area</strong>
+            <span>[Your City / Region]</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-icon">🕐</span>
+          <div class="detail-text">
+            <strong>Trading Hours</strong>
+            <span>Mon–Sat, [start time] – [end time]</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-area">
+        <h3>Send an Enquiry</h3>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name" />
+        </div>
+        <div class="form-group">
+          <label>Business / Organisation</label>
+          <input type="text" placeholder="Restaurant, shop, market stall…" />
+        </div>
+        <div class="form-group">
+          <label>Phone or Email</label>
+          <input type="text" placeholder="Best way to reach you" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="What produce do you need, approximate quantities, and how often…"></textarea>
+        </div>
+        <button class="form-submit">Send Enquiry</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="f-logo">Fresh<span>Roots</span> Wholesale</div>
+    <p>© 2025 [Your Name] — Wholesale Fruit &amp; Vegetables. All rights reserved.</p>
+    <p><a href="#about">About</a> &nbsp;·&nbsp; <a href="#services">Services</a> &nbsp;·&nbsp; <a href="#contact">Contact</a></p>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    function closeMenu() {
+      menu.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-label', 'Open menu');
+    }
+  </script>
+</body>
+</html>
