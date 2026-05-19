@@ -524,6 +524,44 @@
     footer p { font-size: 0.82rem; }
     footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
 
+    /* ── REAL MEDIA ── */
+    .about-img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      display: block;
+    }
+    .about-img-tall { height: 320px; }
+    .about-img-short { height: 160px; margin-top: 1rem; }
+
+    .gallery-photo-wrap,
+    .gallery-video-wrap {
+      padding: 0;
+      overflow: hidden;
+    }
+    .gallery-media {
+      width: 100%;
+      height: 100%;
+      min-height: 180px;
+      object-fit: cover;
+      display: block;
+      border-radius: 8px;
+    }
+    video.gallery-media { object-fit: contain; background: #000; }
+    .gallery-fallback {
+      width: 100%;
+      height: 100%;
+      min-height: 180px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
     /* ── HAMBURGER MENU ── */
     .nav-hamburger {
       display: none;
@@ -645,8 +683,8 @@
         grid-template-columns: 1fr;
         gap: 2rem;
       }
-      .img-tall { height: 220px; }
-      .img-short { height: 130px; }
+      .img-tall, .about-img-tall { height: 220px; }
+      .img-short, .about-img-short { height: 130px; }
 
       /* Services */
       .services-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -755,7 +793,7 @@
       <div class="section-label">About Us</div>
       <h2 class="section-title">Passion for Fresh Produce, Built on Trust</h2>
       <p>
-        [Your Name] is an independent wholesale trader with over a decade of hands-on experience sourcing and supplying fresh fruit and vegetables. Working directly with growers and established suppliers, the business delivers quality produce to a wide range of customers — from local market stalls to restaurants and independent retailers.
+        Inayat Veggies is an independent wholesale trader with over a decade of hands-on experience sourcing and supplying fresh fruit and vegetables. Working directly with growers and established suppliers, the business delivers quality produce to a wide range of customers — from local market stalls to restaurants and independent retailers.
       </p>
       <p>
         Every order is personally handled with attention to freshness, fair pricing, and reliable delivery. This is a business built on relationships — with growers who share a commitment to quality, and with customers who rely on consistency.
@@ -764,20 +802,37 @@
         The sourcing operation runs [X] days a week, starting at the early market hours to select only the best available stock. Customers receive produce that is inspected and packed the same day it is ordered.
       </p>
       <div class="about-highlight">
-        📍 Operating from [Your City/Region] — supplying customers across the surrounding area since [Year].
+        📍 Operating from Hyderabad — supplying customers across the surrounding area since 1990s.
       </div>
     </div>
     <div class="about-img-stack">
-      <div class="img-placeholder img-tall">
+
+      <!-- ✏️ ABOUT PHOTO 1 — replace "your-photo.jpg" with your image filename -->
+      <img
+        src="Content/Inayat.jpeg"
+        alt="Inayat"
+        class="about-img about-img-tall"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      />
+      <div class="img-placeholder img-tall" style="display:none">
         <span class="icon">🖼️</span>
-        <strong>Your photo here</strong>
-        <span>Replace with a professional photo<br>of yourself at work</span>
+        <strong>your-photo.jpg</strong>
+        <span>Place your image file next to index.html<br>and update the filename above</span>
       </div>
-      <div class="img-placeholder img-short">
+
+      <!-- ✏️ ABOUT PHOTO 2 — replace "sourcing-location.jpg" with your image filename -->
+      <img
+        src="Content/SourceLocation.png"
+        alt="Sourcing location"
+        class="about-img about-img-short"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      />
+      <div class="img-placeholder img-short" style="display:none">
         <span class="icon">📸</span>
-        <strong>Sourcing location</strong>
-        <span>Photo of your market or supplier</span>
+        <strong>sourcing-location.jpg</strong>
+        <span>Place your image file next to index.html<br>and update the filename above</span>
       </div>
+
     </div>
   </section>
 
@@ -852,35 +907,76 @@
     <p class="section-intro">Photos and videos from our daily operations — from the sourcing floor to final delivery.</p>
 
     <div class="gallery-grid">
-      <div class="gallery-item wide">
-        <div class="g-icon">🎬</div>
-        <strong style="color:rgba(255,255,255,0.8)">Video — Day at the market</strong>
-        <span>Replace with your video embed or &lt;video&gt; tag</span>
-        <div class="play-btn">▶</div>
+
+      <!-- ✏️ VIDEO 1 — replace "video-market.mp4" with your video filename -->
+      <div class="gallery-item wide gallery-video-wrap">
+        <video controls class="gallery-media"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <source src="Content/Vegetable.mp4" type="video/mp4" />
+        </video>
+        <div class="gallery-fallback" style="display:none">
+          <div class="g-icon">🎬</div>
+          <strong style="color:rgba(255,255,255,0.8)">video-market.mp4</strong>
+          <span>Place your video file next to index.html<br>and update the filename above</span>
+          <div class="play-btn">▶</div>
+        </div>
       </div>
-      <div class="gallery-item">
-        <div class="g-icon">🖼️</div>
-        <span>Photo — Sourcing location</span>
+
+      <!-- ✏️ PHOTO 1 — replace "photo-sourcing.jpg" with your image filename -->
+      <div class="gallery-item gallery-photo-wrap">
+        <img src="photo-sourcing.jpg" alt="Sourcing location" class="gallery-media"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="gallery-fallback" style="display:none">
+          <div class="g-icon">🖼️</div>
+          <span>photo-sourcing.jpg</span>
+        </div>
       </div>
-      <div class="gallery-item">
-        <div class="g-icon">🖼️</div>
-        <span>Photo — Fresh stock display</span>
+
+      <!-- ✏️ PHOTO 2 — replace "photo-stock.jpg" with your image filename -->
+      <div class="gallery-item gallery-photo-wrap">
+        <img src="photo-stock.jpg" alt="Fresh stock display" class="gallery-media"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="gallery-fallback" style="display:none">
+          <div class="g-icon">🖼️</div>
+          <span>photo-stock.jpg</span>
+        </div>
       </div>
-      <div class="gallery-item">
-        <div class="g-icon">🖼️</div>
-        <span>Photo — Packing &amp; loading</span>
+
+      <!-- ✏️ PHOTO 3 — replace "photo-packing.jpg" with your image filename -->
+      <div class="gallery-item gallery-photo-wrap">
+        <img src="photo-packing.jpg" alt="Packing and loading" class="gallery-media"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="gallery-fallback" style="display:none">
+          <div class="g-icon">🖼️</div>
+          <span>photo-packing.jpg</span>
+        </div>
       </div>
-      <div class="gallery-item wide">
-        <div class="g-icon">🖼️</div>
-        <span>Photo — Market stall / supplier premises</span>
+
+      <!-- ✏️ PHOTO 4 — replace "photo-market.jpg" with your image filename -->
+      <div class="gallery-item wide gallery-photo-wrap">
+        <img src="photo-market.jpg" alt="Market stall or supplier premises" class="gallery-media"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="gallery-fallback" style="display:none">
+          <div class="g-icon">🖼️</div>
+          <span>photo-market.jpg</span>
+        </div>
       </div>
-      <div class="gallery-item">
-        <div class="g-icon">🎬</div>
-        <span>Video — Stock selection process</span>
-        <div class="play-btn">▶</div>
+
+      <!-- ✏️ VIDEO 2 — replace "video-selection.mp4" with your video filename -->
+      <div class="gallery-item gallery-video-wrap">
+        <video controls class="gallery-media"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <source src="Content/Vegetabl Stall.mp4" type="video/mp4" />
+        </video>
+        <div class="gallery-fallback" style="display:none">
+          <div class="g-icon">🎬</div>
+          <span>video-selection.mp4</span>
+          <div class="play-btn">▶</div>
+        </div>
       </div>
+
     </div>
-    <p class="gallery-note">Replace placeholder boxes above with your actual &lt;img&gt; and &lt;video&gt; tags</p>
+    <p class="gallery-note">✏️ Put your image and video files in the same folder as index.html, then update the filenames marked above</p>
   </section>
 
   <!-- HOW WE WORK -->
